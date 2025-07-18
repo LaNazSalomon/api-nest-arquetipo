@@ -4,6 +4,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RolesModule } from './roles/roles.module';
+import { MenusRolesModule } from './menus-roles/menus-roles.module';
 
 
 @Module({
@@ -22,6 +23,7 @@ import { RolesModule } from './roles/roles.module';
     MenusModule,
     AuthModule,
     RolesModule,
+    MenusRolesModule,
   ],
   controllers: [],
   providers: [],

@@ -7,10 +7,11 @@
 
 
 
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -24,19 +25,25 @@ export class AuthController {
   
 
   @Get()
-  findAll() {
-    return this.authService.findAll();
+  findAll( @Query() paginationDto: PaginationDto ) {
+    return this.authService.findAllUsers( paginationDto );
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id);
+
+//term: termino ya que podemos buscar por nombre, rol, usuario
+  @Get(':term')
+  findByTerm(@Param('term') term: string) {
+    return this.authService.findUsersByTerm( term );
   }
+
+
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAuthDto: UpdateUserDto) {
     return this.authService.update(+id, updateAuthDto);
   }
+
+
 
   @Delete(':id')
   remove(@Param('id') id: string) {

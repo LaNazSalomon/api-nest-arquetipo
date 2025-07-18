@@ -4,6 +4,7 @@
  */
 
 import { IsBoolean, IsEmail, IsPhoneNumber, IsString } from 'class-validator';
+import { Role } from 'src/roles/entities/role.entity';
 
 export class CreateUserDto {
   @IsString({ message: 'Se espera que los/el nombres sean de tipo texto' })
@@ -24,10 +25,9 @@ export class CreateUserDto {
   @IsPhoneNumber()
   telefono: string;
 
-  //! Los DTOs aun no estan implementados 16/07/2025
   //TODO: Implementar roles cuando se creen (creo que no cambia mucho en el DTO)
   @IsString( { message: 'Se espera un string' } )
-  id_rol: string;
+  id_rol: Role;
 
   @IsBoolean( { message: 'El estatus tiene que ser true o false' } )
   status: boolean;
